@@ -54,10 +54,8 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityConfiguration(HttpSecurity http) throws Exception {
 		http.csrf(c -> c.disable())
-				.authorizeHttpRequests(
-						auth -> auth.requestMatchers("/orders/**").authenticated()
-						.requestMatchers("/users/**").authenticated()
-						.anyRequest().permitAll())
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/orders/**").authenticated()
+						.requestMatchers("/users/**").authenticated().anyRequest().permitAll())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 		http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 		http.cors(c -> c.configurationSource(new CorsConfigurationSource() {
@@ -65,7 +63,8 @@ public class SecurityConfig {
 			@Override
 			public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 				CorsConfiguration cfg = new CorsConfiguration();
-				cfg.setAllowedOrigins(Arrays.asList("https://binni-codebook.netlify.app", "http://localhost:4000","https://binni-codebook.netlify.app/*"));
+				cfg.setAllowedOrigins(Arrays.asList("https://binni-codebook.netlify.app",
+						"https://binni-codebook.netlify.app/*", "https://binni-codebook.netlify.app/**"));
 				cfg.setAllowedMethods(Collections.singletonList("*"));
 				cfg.setAllowCredentials(true);
 				cfg.setAllowedHeaders(Collections.singletonList("*"));
