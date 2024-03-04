@@ -65,7 +65,7 @@ public class SecurityConfig {
 			@Override
 			public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 				CorsConfiguration cfg = new CorsConfiguration();
-				cfg.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:4000","https://binni-codebook.netlify.app/*"));
+				cfg.setAllowedOrigins(Arrays.asList("https://binni-codebook.netlify.app", "http://localhost:4000","https://binni-codebook.netlify.app/*"));
 				cfg.setAllowedMethods(Collections.singletonList("*"));
 				cfg.setAllowCredentials(true);
 				cfg.setAllowedHeaders(Collections.singletonList("*"));
